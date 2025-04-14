@@ -11,7 +11,7 @@ const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about-us' },
   { name: 'Services', href: '/services' },
-  { name: 'Contact', href: '/contact' },
+  { name: 'Contact', href: '/apply-now' },
 ];
 
 const handleApplyClick = () => {
@@ -74,8 +74,8 @@ const Navbar = () => {
               <Link
                 href={link.href}
                 onClick={() => handleLinkClick(link.name.toLowerCase())}
-                className={`transition-all duration-300 hover:text-green-700 ${
-                  activeLink === link.name.toLowerCase() ? 'text-green-700' : 'text-gray-800'
+                className={`transition-all duration-300 hover:text-[#56CBF9] ${
+                  activeLink === link.name.toLowerCase() ? 'text-[#56CBF9]' : 'text-gray-800'
                 }`}
               >
                 {link.name}

@@ -1,13 +1,11 @@
 // app/components/Navbar.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import gsap from 'gsap';
 import ApplyButton from '@/components/share/Apply-BT';
-
-// Local Comoponent
-
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -17,56 +15,66 @@ const navLinks = [
 ];
 
 const handleApplyClick = () => {
-    window.location.href = '/apply-now';
-  };
+  window.location.href = '/apply-now';
+};
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false);
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(
+      navRef.current,
+      { y: -20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
+    );
+  }, []);
 
   const handleLinkClick = (link: string) => {
     setActiveLink(link);
     setMenuOpen(false);
   };
 
-
-
   return (
-    <nav className="bg-white shadow-md rounded-full px-4 py-3 w-full">
+    <nav
+      ref={navRef}
+      className="backdrop-blur-md bg-white/30 border border-white/30 shadow-lg rounded-full px-6 py-3 mx-auto w-[95%] mt-4 fixed z-50 top-0 left-0 right-0 transition-all"
+    >
       <div className="flex items-center justify-between">
-        {/* Logo Left Side */}
+        {/* Logo */}
         <div className="flex items-center">
           <Image
             src="/images/icons/svg/NNL Forest Green  Logo.svg"
             alt="Logo"
-            width={50}
-            height={50}
-            className="w-16 h-16 object-contain"
+            width={48}
+            height={48}
+            className="w-12 h-12 object-contain"
           />
         </div>
 
-        {/* Hamburger for Mobile */}
+        {/* Hamburger */}
         <div className="md:hidden">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-gray-800 focus:outline-none"
+            className="text-black text-2xl focus:outline-none"
           >
             ☰
           </button>
         </div>
 
-        {/* Center Nav Links */}
+        {/* Links */}
         <ul
           className={`${
             menuOpen ? 'flex' : 'hidden'
-          } md:flex md:items-center md:space-x-8 space-y-4 md:space-y-0 text-lg font-medium flex-col md:flex-row absolute md:static bg-white md:bg-transparent left-0 right-0 top-20 md:top-auto p-6 md:p-0 z-10 rounded-xl shadow-md md:shadow-none`}
+          } md:flex md:items-center md:space-x-8 space-y-4 md:space-y-0 text-lg font-medium flex-col md:flex-row absolute md:static bg-white/80 md:bg-transparent left-0 right-0 top-20 md:top-auto p-6 md:p-0 z-10 rounded-3xl shadow-md md:shadow-none`}
         >
           {navLinks.map((link) => (
             <li key={link.name.toLowerCase()}>
               <Link
                 href={link.href}
                 onClick={() => handleLinkClick(link.name.toLowerCase())}
-                className={`transition-colors duration-200 hover:text-green-700 ${
+                className={`transition-all duration-300 hover:text-green-700 ${
                   activeLink === link.name.toLowerCase() ? 'text-green-700' : 'text-gray-800'
                 }`}
               >
@@ -76,13 +84,12 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Button Right Side */}
+        {/* CTA Button */}
         <div className="hidden md:block">
-            <ApplyButton
-                label="Apply Now"
-                onClick={handleApplyClick}
-
-             />
+          <ApplyButton
+            label="Apply Now"
+            onClick={handleApplyClick}
+          />
         </div>
       </div>
     </nav>

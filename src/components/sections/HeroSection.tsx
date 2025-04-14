@@ -27,7 +27,7 @@ const HeroSection = () => {
 
   return (
     <section
-      className="relative w-full h-[90vh] bg-cover bg-center flex items-center justify-center px-6 md:px-16"
+      className="relative w-full h-[100vh] bg-cover bg-center flex items-center justify-center px-6 md:px-16"
       style={{ backgroundImage: `url('../images/bg/hero-bg.jpg')` }}
     >
       {/* Overlay */}
@@ -58,8 +58,12 @@ const HeroSection = () => {
           {/* Buttons Wrapper - Insert your Button components here */}
           <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-4">
             {/* Replace below divs with your Button component */}
-            <div className="bg-green-600 px-6 py-3 rounded-full text-white text-lg font-medium cursor-pointer hover:bg-green-700 transition">
+            <div className="bg-green-600 px-6 py-3 rounded-full text-white text-lg font-medium cursor-pointer hover:bg-green-700 transition"
+            onChange={() => window.location.href = '/apply-now'}
+            onClick={() => window.location.href = '/apply-now'}
+            >
               Get Started
+
             </div>
             <div className="bg-white px-6 py-3 rounded-full text-green-600 text-lg font-medium cursor-pointer hover:bg-gray-100 transition">
               Learn More

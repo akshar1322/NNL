@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local'
 import "./globals.css";
-
+import Navebar from "@/components/Elements/Navbar";
+import Footer from "@/components/Elements/Footer";
 // fonts
 
 
@@ -24,7 +25,15 @@ export default function RootLayout({
       <body
         className={`antialiased ${SatoshiMedium.className}`}
       >
-        {children}
+        <>
+        <Navebar />
+            {children}
+          <div className="bg-white" >
+               <Footer />
+          </div>
+
+        </>
+
       </body>
     </html>
   );

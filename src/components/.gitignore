@@ -36,7 +36,7 @@ const SatoshiMedium = localFont({
 
 
 
-
+MONGODB_URI=mongodb+srv://jasonsfall1n1:H96cuQXqG1tsbjWj@north-n-loans.h02lf5j.mongodb.net/?retryWrites=true&w=majority&appName=North-N-loans
 
 
 

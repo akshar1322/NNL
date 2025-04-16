@@ -35,3 +35,9 @@ body {
   max-height: 500px; /* Adjust as needed */
   overflow: hidden;
 }
+.text-stroke-3 {
+  -webkit-text-stroke: 0.1ex white;
+}
+html {
+  scroll-behavior: smooth;
+}

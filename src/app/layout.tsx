@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import "./globals.css";
 import Navebar from "@/components/Elements/Navbar";
 import Footer from "@/components/Elements/Footer";
+import ClientGuards from "@/components/UI/ClientGuards";
 // fonts
 
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         className={`antialiased ${SatoshiMedium.className}`}
       >
         <>
+        <ClientGuards />
         <Navebar />
             {children}
           <div className="bg-white" >

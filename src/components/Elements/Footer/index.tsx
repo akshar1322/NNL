@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import Link from 'next/link';
 
+import { useRouter } from "next/navigation"
 const currentYear = new Date().getFullYear();
 
 const footerLinks = [
@@ -17,16 +18,18 @@ const footerLinks = [
   {
     title: 'Navigation',
     links: [
-      { name: 'Services', href: '#services' },
-      { name: 'About Us', href: '#about' },
-      { name: 'Contact Us', href: '#contact' },
-      { name: 'Apply For Loan', href: '#apply' },
+      { name: 'Services', href: '/services' },
+      { name: 'About Us', href: '/about' },
+      { name: 'Contact Us', href: '/contact' },
+      { name: 'Apply For Loan', href: '/apply-now' },
+
     ],
   },
 ];
 
 const Footer: React.FC = () => {
   const footerContentRef = useRef(null);
+  const router = useRouter()
 
   return (
     <footer className="relative rounded-t-2xl px-8 py-16 bg-gradient-to-t from-pink-100 via-pink-50 to-white text-gray-800">
@@ -81,7 +84,12 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="flex flex-col md:flex-row justify-between items-center mt-8 text-sm text-gray-600 space-y-4 uppercase md:space-y-0">
-        <p>V SX-ACT 30r.mx.50.10</p>
+          <p
+          className="hover:text-gray-400 cursor-pointer"
+          onClick={() => router.push("/version")}
+        >
+          V SX-ACT 30r.mx.50.10
+        </p>
         <p>© {currentYear} North N Loans. All rights reserved.</p>
         <div className="flex items-center space-x-3">
           <span className="transform rotate-180 transition-transform duration-300">🌐</span>

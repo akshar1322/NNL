@@ -1,45 +1,44 @@
 // app/apply/page.tsx
+'use client';
+import React, { useEffect } from 'react';
 import MultiStepForm from '@/components/forms/MultiStepForm';
 import FSQ from '@/components/UI/FSQ';
 import Image from 'next/image';
-import localFont from 'next/font/local';
+// import localFont from 'next/font/local';
 
 
 //  fonts
 
-const dansregular = localFont({
-    src: "../../fonts/DancingScript/DancingScript-Regular.ttf"
-   })
+// const dansregular = localFont({
+//     src: "../../fonts/DancingScript/DancingScript-Regular.ttf"
+//    })
 
 
 export default function ApplyPage() {
+   useEffect(() => {
+      document.title = 'Apply Now | North N Loans';
+    }, []);
   return (
-    <main className="min-h-screen bg-transparent text-[#333]">
-
-      {/* Banner Section with heading */}
-      <section className="relative w-full h-[60vh] bg-black">
+    < >
+    <main className="min-h-screen bg-white flex flex-col justify-between">
+    <main className="pt-24 bg-white px-4 md:px-12 lg:px-24">
+      {/* Hero Section */}
+      <section className="relative w-full h-[60vh] rounded-2xl overflow-hidden shadow-lg mb-12">
         <Image
-          src="/images/bg/arlington-research-Kz8nHVg_tGI-unsplash.jpg"
-          alt="Banner"
+          src="/images/bg/israel-andrade-YI_9SivVt_s-unsplash.jpg" // change path to your actual image
+          alt="About Us Hero"
           fill
-          className="object-cover object-center opacity-60"
+          className="object-cover"
+          priority
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-          <h1 className="text-5xl md:text-5xl font-bold text-white drop-shadow-lg">Get Started With Your Loan Application <span className={`${dansregular.className} text-[#56CBF9] `}>Today !</span></h1>
+        <div className="absolute inset-0 </>/40 flex items-center justify-center">
+          <h1 className="text-green-400 text-4xl md:text-5xl font-bold">Apply Now</h1>
         </div>
       </section>
-
-      {/* MultiStep Form Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
-        <div className="max-w-9xl mx-auto px-6">
-          <MultiStepForm />
-        </div>
-      </section>
-      <div className="bg-white py-20 px-6">
-        <div className="max-w-9xl mx-auto px-6">
-          <FSQ />
-        </div>
-      </div>
     </main>
+      <MultiStepForm/>
+      <FSQ/>
+    </main>
+    </>
   );
 }

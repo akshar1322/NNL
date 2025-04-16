@@ -8,6 +8,7 @@ const FormSchema = new mongoose.Schema({
   phone: { type: String, required: true },
   city: { type: String, required: true },
   state: { type: String, required: true },
+  loanamount: { type: String, required: true },
   bank: { type: String, required: true },
   ipAddress: { type: String, required: true },
   submittedAt: { type: Date, default: Date.now },

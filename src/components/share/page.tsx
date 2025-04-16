@@ -1,6 +1,6 @@
 import React from 'react'
-// import Navbar from '../Elements/Navbar'
-// import Footer from '../Elements/Footer'
+import Navbar from '../Elements/Navbar'
+import Footer from '../Elements/Footer'
 import HeroSection from '../sections/HeroSection'
 import MultiStepForm from '../forms/MultiStepForm'
 import Truseed from '../sections/trused'
@@ -14,7 +14,7 @@ function gpage() {
     <>
         <main>
             <section className=" min-h-screen bg-white flex flex-col justify-between">
-                {/* <Navbar/> */}
+                <Navbar/>
                 <HeroSection/>
                 <MultiStepForm/>
                 <Truseed/>
@@ -24,7 +24,7 @@ function gpage() {
                 <WhyChooseUs/>
                 <br /> <br />
 
-                {/* <Footer/> */}
+                <Footer/>
             </section>
         </main>
     </>

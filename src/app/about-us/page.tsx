@@ -3,6 +3,8 @@ import AboutUs from '@/components/sections/AboutUs';
 import { useEffect } from 'react';
 import Image from 'next/image';
 import React from 'react';
+import Navbar from '@/components/Elements/Navbar';
+import Footer from '@/components/Elements/Footer';
 
 
 const AboutUsPage = () => {
@@ -11,6 +13,7 @@ const AboutUsPage = () => {
   }, []);
   return (
     < >
+    <Navbar />
     <main className="min-h-screen bg-white flex flex-col justify-between">
     <main className="pt-24 bg-white px-4 md:px-12 lg:px-24">
       {/* Hero Section */}
@@ -29,6 +32,7 @@ const AboutUsPage = () => {
     </main>
     <AboutUs />
     </main>
+    <Footer />
     </>
   );
 };

@@ -28,6 +28,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/bcrypt": "^5.0.2",
     "@types/date-fns": "^2.5.3",
     "@types/file-saver": "^2.0.7",
     "@types/js-cookie": "^3.0.6",

@@ -1,9 +1,8 @@
-// app/api/admin/applications/[id]/route.ts
+import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import Form from '@/models/formModel';
-import { NextResponse } from 'next/server';
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
   await dbConnect();
 
   const { id } = params;

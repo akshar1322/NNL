@@ -3,7 +3,7 @@ import dbConnect from '@/lib/dbConnect';
 import Form from '@/models/formModel';
 
 // This is the handler for DELETE requests.
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   await dbConnect();
 
   const { id } = params;
@@ -21,4 +21,3 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
     return NextResponse.json({ message: 'Error deleting application', error }, { status: 500 });
   }
 }
-  

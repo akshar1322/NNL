@@ -13,8 +13,6 @@ export default function Sidebar({ username, role }: { username: string; role: st
         </div>
         <nav className="p-6 space-y-4">
           <Link href="/admin/dashboard" className="block hover:text-lime-400">Home</Link>
-          
-          <Link href="/admin/users" className="block hover:text-lime-400">Users</Link>
           <Link href="/admin/export" className="block hover:text-lime-400">Export</Link>
         </nav>
         <LogoutButton/>

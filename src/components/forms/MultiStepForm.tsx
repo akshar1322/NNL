@@ -5,7 +5,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+
 import localFont from 'next/font/local';
 
 
@@ -28,7 +28,7 @@ const MultiStepForm = () => {
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    amount: '',
+    loanamount: '',
     firstName: '',
     lastName: '',
     email: '',
@@ -39,7 +39,7 @@ const MultiStepForm = () => {
   });
 
   useEffect(() => {
-    if (Cookies.get('form_submitted')) setSubmitted(true);
+
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -50,7 +50,6 @@ const MultiStepForm = () => {
     try {
       const response = await axios.post('/api/submit', formData);
       if (response.status === 200) {
-        Cookies.set('form_submitted', 'true', { expires: 30 });
         setSubmitted(true);
       }
     } catch (error) {
@@ -86,12 +85,12 @@ const MultiStepForm = () => {
               <span className={`${dansregular.className} text-[#56CBF9] `}> Quick</span> Apply For Loan</h2>
               <div className="space-y-4">
                 <label className="block text-lg">Amount Requested</label>
-                <select name="amount" onChange={handleChange} className="w-full rounded-lg px-4 py-3 text-lg sm:text-mg bg-white/70 border border-white/40">
+                <select name="loanamount" onChange={handleChange} className="w-full rounded-lg px-4 py-3 text-lg sm:text-mg bg-white/70 border border-white/40">
                   <option value="">Select amount</option>
-                  <option value="1000-2000">$1000 to $2000</option>
-                  <option value="2000-3000">$2000 to $3000</option>
-                  <option value="3000-4000">$3000 to $4000</option>
-                  <option value="4000-5000">$4000 to $5000</option>
+                  <option value="1000-2500">$1000 to $2500</option>
+                  <option value="2500-5000">$2500 to $5000</option>
+                  <option value="5000-15000">$5000 to $15000</option>
+
                 </select>
               </div>
             </motion.div>

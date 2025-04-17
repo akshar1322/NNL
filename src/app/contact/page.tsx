@@ -3,6 +3,8 @@ import { useEffect } from 'react'
 import React from 'react'
 import WhatWeOffer from '@/components/sections/WhatWeOffer';
 import Image from 'next/image';
+import Navbar from '@/components/Elements/Navbar';
+import Footer from '@/components/Elements/Footer';
 
 function ContactUs() {
    useEffect(() => {
@@ -11,6 +13,7 @@ function ContactUs() {
 
   return (
     < >
+    <Navbar/>
     <main className="min-h-screen bg-white flex flex-col justify-between">
     <main className="pt-24 bg-white px-4 md:px-12 lg:px-24">
       {/* Hero Section */}
@@ -29,6 +32,7 @@ function ContactUs() {
     </main>
         <WhatWeOffer/>
     </main>
+    <Footer/>
     </>
   )
 }

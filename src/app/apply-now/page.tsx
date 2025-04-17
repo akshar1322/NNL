@@ -4,6 +4,8 @@ import React, { useEffect } from 'react';
 import MultiStepForm from '@/components/forms/MultiStepForm';
 import FSQ from '@/components/UI/FSQ';
 import Image from 'next/image';
+import Navbar from '@/components/Elements/Navbar';
+import Footer from '@/components/Elements/Footer';
 // import localFont from 'next/font/local';
 
 
@@ -20,6 +22,7 @@ export default function ApplyPage() {
     }, []);
   return (
     < >
+    <Navbar/>
     <main className="min-h-screen bg-white flex flex-col justify-between">
     <main className="pt-24 bg-white px-4 md:px-12 lg:px-24">
       {/* Hero Section */}
@@ -39,6 +42,7 @@ export default function ApplyPage() {
       <MultiStepForm/>
       <FSQ/>
     </main>
+    <Footer/>
     </>
   );
 }

@@ -1,4 +1,6 @@
 'use client';
+import Footer from '@/components/Elements/Footer';
+import Navbar from '@/components/Elements/Navbar';
 import WhatWeOffer from '@/components/sections/WhatWeOffer';
 import Image from 'next/image';
 import React from 'react';
@@ -10,6 +12,7 @@ const ServicesPage = () => {
       }, []);
   return (
     < >
+    <Navbar/>
     <main className="min-h-screen bg-white flex flex-col justify-between">
     <main className="pt-24 bg-white px-4 md:px-12 lg:px-24">
       {/* Hero Section */}
@@ -28,6 +31,7 @@ const ServicesPage = () => {
     </main>
         <WhatWeOffer/>
     </main>
+    <Footer/>
     </>
   );
 };

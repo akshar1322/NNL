@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { saveAs } from 'file-saver';
 import { format } from 'date-fns';
+import toast from 'react-hot-toast';
 
 export default function ExportApplications() {
   const [data, setData] = useState([]);
@@ -20,6 +21,7 @@ export default function ExportApplications() {
       const res = await fetch(`/api/admin/export?${query.toString()}`);
       const result = await res.json();
       setData(result);
+
     } catch (error) {
       console.error('Error fetching applications:', error);
     } finally {
@@ -32,34 +34,40 @@ export default function ExportApplications() {
   }, [fromDate, toDate]);
 
   const handleDownload = (type: 'json' | 'csv') => {
-    if (!data.length) return;
+  if (!data.length) {
+    toast.error('No data available to download!');
+    return;
+  }
 
-    const fileName = `applications-${format(new Date(), 'yyyyMMdd_HHmmss')}`;
+  const fileName = `applications-${format(new Date(), 'yyyyMMdd_HHmmss')}`;
 
-    if (type === 'json') {
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-      saveAs(blob, `${fileName}.json`);
-    } else {
-      const csvHeaders = Object.keys(data[0]).join(',');
-      const csvRows = data.map((item: any) =>
-        Object.values(item).map(val => `"${val}"`).join(',')
-      );
-      const csvString = [csvHeaders, ...csvRows].join('\n');
-      const blob = new Blob([csvString], { type: 'text/csv' });
-      saveAs(blob, `${fileName}.csv`);
-    }
-  };
+  if (type === 'json') {
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    saveAs(blob, `${fileName}.json`);
+    toast.success('JSON file downloaded successfully!');
+  } else {
+    const csvHeaders = Object.keys(data[0]).join(',');
+    const csvRows = data.map((item: any) =>
+      Object.values(item).map(val => `"${val}"`).join(',')
+    );
+    const csvString = [csvHeaders, ...csvRows].join('\n');
+    const blob = new Blob([csvString], { type: 'text/csv' });
+    saveAs(blob, `${fileName}.csv`);
+    toast.success('CSV file downloaded successfully!');
+  }
+};
+
 
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4 text-white">Export Applications</h1>
 
-      <div className="flex flex-col md:flex-row gap-4 mb-6">
+      <div className="flex cursor-pointer flex-col md:flex-row gap-4 mb-6">
         <div>
-          <label className="block text-white">From Date</label>
+          <label className="block  text-white">From Date</label>
           <input
             type="date"
-            className="bg-gray-800 text-white p-2 rounded"
+            className="bg-gray-800 cursor-pointer text-white p-2 rounded"
             value={fromDate}
             onChange={e => setFromDate(e.target.value)}
           />
@@ -68,7 +76,7 @@ export default function ExportApplications() {
           <label className="block text-white">To Date</label>
           <input
             type="date"
-            className="bg-gray-800 text-white p-2 rounded"
+            className="bg-gray-800  text-white p-2 rounded"
             value={toDate}
             onChange={e => setToDate(e.target.value)}
           />

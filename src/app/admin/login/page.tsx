@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
-
+import toast from 'react-hot-toast';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ROUTES, API_ROUTES } from '@/constants/index';
@@ -37,11 +38,14 @@ export default function AdminLogin() {
         if (data.success) {
           setToken(data.token); // Save token for OTP verification
           setStep(2); // Proceed to OTP
+          toast.success('User added successfully! 🎉');
         } else {
           setError(data.message || 'Login failed');
+          toast.error('Login failed ❌');
         }
       } catch (err) {
         setError('Login request failed');
+        toast.error('Login request failed ❌');
       }
     }
   };
@@ -61,11 +65,14 @@ export default function AdminLogin() {
 
       if (data.success) {
         router.push(ROUTES.DASHBOARD);
+        toast.success('Login successful! 🎉');
       } else {
         setError(data.message || 'OTP verification failed');
+        toast.error('OTP verification failed ❌');
       }
     } catch (err) {
       setError('OTP verification error');
+      
     }
   };
 

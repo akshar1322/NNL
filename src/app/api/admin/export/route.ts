@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
   try {
     const data = await Form.find(filter).lean();
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to fetch applications' }, { status: 500 });
   }
 }

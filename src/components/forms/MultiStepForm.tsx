@@ -5,7 +5,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+
 import localFont from 'next/font/local';
 
 

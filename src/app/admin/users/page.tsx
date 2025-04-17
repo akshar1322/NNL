@@ -1,16 +1,25 @@
 'use client';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+interface User {
+  username: string;
+  email: string;
+  otp: string;
+  password: string;
+  role: string;
+  value: number;
+}
 
 export default function Users() {
-  const [users, setUsers] = useState([]);
-  const [newUser, setNewUser] = useState({
-    username: '',
-    email: '',
-    otp: '',
-    password: '',
-    role: 'viewer',
-    value: 0,
-  });
+  const [users, setUsers] = useState<User[]>([]);
+const [newUser, setNewUser] = useState<User>({
+  username: '',
+  email: '',
+  otp: '',
+  password: '',
+  role: 'viewer',
+  value: 0,
+});
   const [showPopup, setShowPopup] = useState(false);
   const [selectedUser, setSelectedUser] = useState<any>(null);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
@@ -39,19 +48,21 @@ export default function Users() {
     setShowDeletePopup(true);
   };
 
-  // Confirm delete action
-  const confirmDelete = async () => {
-    const response = await fetch(`/api/admin/users/${selectedUser._id}`, {
-      method: 'DELETE',
-    });
 
-    if (response.ok) {
-      setUsers(users.filter((user: any) => user._id !== selectedUser._id));
-      setShowDeletePopup(false);
-    } else {
-      console.log('Error deleting user');
-    }
-  };
+// Confirm delete action
+const confirmDelete = async () => {
+  const response = await fetch(`/api/admin/users/${selectedUser._id}`, {
+    method: 'DELETE',
+  });
+
+  if (response.ok) {
+    setUsers(users.filter((user: any) => user._id !== selectedUser._id));
+    setShowDeletePopup(false);
+    toast.success('User deleted successfully! ✅');
+  } else {
+    toast.error('Failed to delete user ❌');
+  }
+};
 
   // Handle Add User Form submission
   const handleAddUser = async () => {
